@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
 import Link from '../src/Link';
+import Layout from '../components/Layout';
 
 function Copyright() {
   return (
@@ -21,6 +22,7 @@ function Copyright() {
 
 export default function About() {
   return (
+    <Layout>
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
@@ -31,5 +33,6 @@ export default function About() {
         <Copyright />
       </Box>
     </Container>
+    </Layout>
   );
 }
