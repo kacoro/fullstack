@@ -34,7 +34,7 @@ WithInitialProps.getInitialProps = async ({ pathname }) => {
   const res = await sampleFetchWrapper(
     'http://localhost:8000/users'
   )
-  const items: User[]  = res.data
+  const items: User[]  = res.data   
   return { items, pathname }
 }
 
