@@ -15,13 +15,16 @@
       "skipLibCheck": true,
       "baseUrl": ".",
       "typeRoots": ["./node_modules/@types"],
-      "lib": ["dom", "es2015", "es2016"],
+      "lib": ["es6","dom", "es2015", "es2016"],
       "strict": false,
       "forceConsistentCasingInFileNames": true,
       "noEmit": true,
       "esModuleInterop": true,
       "resolveJsonModule": true,
-      "isolatedModules": true
+      "isolatedModules": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks":false
     },
     "exclude": [
       "node_modules",
