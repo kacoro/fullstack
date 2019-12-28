@@ -6,17 +6,29 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 
 export default class MyApp extends App {
-  componentDidMount() {
+  state = {
+    theme: theme
+  };
+  async componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
+    
   }
-
+  static async getInitialProps ({ Component, ctx }) {
+    let pageProps = {}
+   
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+    return {pageProps}
+  }
+  
   render() {
-    const { Component, pageProps } = this.props;
-
+    const { Component, pageProps, } = this.props;
+   
     return (
       <React.Fragment>
         <Head>

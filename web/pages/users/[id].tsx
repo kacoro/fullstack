@@ -4,7 +4,7 @@ import { NextPageContext } from 'next'
 import { User } from '../../interfaces'
 import Layout from '../../components/Layout'
 import ListDetail from '../../components/ListDetail'
-import { sampleFetchWrapper } from '../../utils/sample-api'
+import { fetchWrapper } from '../../utils/api'
 
 type Props = {
   item?: User
@@ -16,7 +16,7 @@ class InitialPropsDetail extends React.Component<Props> {
     try {
       const { id } = query
       console.log(id)
-      const item = await sampleFetchWrapper(
+      const item = await fetchWrapper(
         `http://localhost:8000/users/${Array.isArray(id) ? id[0] : id}`
       )
       return { item }

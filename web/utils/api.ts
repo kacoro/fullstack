@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 
-export async function sampleFetchWrapper(
+export async function fetchWrapper(
   input: RequestInfo,
   init?: RequestInit
 ) {
