@@ -1,11 +1,10 @@
 import * as React from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import theme from '../src/theme';
 import {fetchWrapper} from '../utils/api'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { useState, useEffect } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import Dashbord from './Dashbord'
 type Props = {
   title?: string
 }
@@ -42,29 +41,10 @@ const Layout: React.FC<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Checkbox defaultChecked />
     <ThemeProvider theme={myTheme}>
-    <header>
-    <Checkbox defaultChecked />
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <Dashbord>
+      {children}
+    </Dashbord>
     </ThemeProvider>
   </div>
 )}
