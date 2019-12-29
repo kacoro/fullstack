@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { NextPageContext, NextComponentType } from 'next';
+import { appWithTranslation } from '../i18n'
 const Noop = ({ children }) => children
 
 type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
@@ -13,7 +14,7 @@ type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
 interface Props extends AppProps {
   Component: LayoutComponent;
 }
-export default class MyApp extends App<Props> {
+ class MyApp extends App<Props> {
   
   async componentDidMount() {
     // Remove the server-side injected CSS.
@@ -50,6 +51,7 @@ export default class MyApp extends App<Props> {
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
+        
         </Layout>
         </div>
       </React.Fragment>
@@ -57,3 +59,5 @@ export default class MyApp extends App<Props> {
     );
   }
 }
+
+export default appWithTranslation(MyApp)
