@@ -6,6 +6,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import clsx from 'clsx';
 import { mainListItems, secondaryListItems } from './listItems';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useRouter } from 'next/router'
 type Props = {
   title?: string
 }
@@ -103,7 +105,7 @@ const Layout: React.FC<Props> = ({
   const handleDrawerClose = () => {
     setOpen(false);
   };
- 
+  const router = useRouter()
   return (
   <div className={classes.root}>
   
@@ -125,6 +127,9 @@ const Layout: React.FC<Props> = ({
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
+          </IconButton>
+          <IconButton color="inherit" onClick={() => router.push('/signin')}>
+             <ExitToAppIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
