@@ -16,6 +16,30 @@
       ],
       "libs/db/*": [
         "libs/db/src/*"
+      ],
+      "@app/common": [
+        "libs/common/src"
+      ],
+      "@app/common/*": [
+        "libs/common/src/*"
+      ],
+      "@app/redis": [
+        "libs/redis/src"
+      ],
+      "@app/redis/*": [
+        "libs/redis/src/*"
+      ],
+      "@app/rs": [
+        "libs/rs/src"
+      ],
+      "@app/rs/*": [
+        "libs/rs/src/*"
+      ],
+      "@app/rdb": [
+        "libs/rdb/src"
+      ],
+      "@app/rdb/*": [
+        "libs/rdb/src/*"
       ]
     }
   },

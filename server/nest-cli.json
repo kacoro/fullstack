@@ -34,6 +34,42 @@
       "compilerOptions": {
         "tsConfigPath": "libs/db/tsconfig.lib.json"
       }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "redis": {
+      "type": "library",
+      "root": "libs/redis",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis/tsconfig.lib.json"
+      }
+    },
+    "rs": {
+      "type": "library",
+      "root": "libs/rs",
+      "entryFile": "index",
+      "sourceRoot": "libs/rs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rs/tsconfig.lib.json"
+      }
+    },
+    "rdb": {
+      "type": "library",
+      "root": "libs/rdb",
+      "entryFile": "index",
+      "sourceRoot": "libs/rdb/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rdb/tsconfig.lib.json"
+      }
     }
   }
 }

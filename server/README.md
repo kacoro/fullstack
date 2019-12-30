@@ -35,4 +35,17 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## add an module and control
+```
+nest g mo -p admin demo
+nest g co -p admin demo
+```
+
+
+## add a lib
+
+```bash
+$ nest g lib common
+```
+
 

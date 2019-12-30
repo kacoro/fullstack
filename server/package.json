@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",
+    "@nestjs/config": "^0.0.7",
     "@nestjs/core": "^6.7.2",
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "^6.7.2",
@@ -30,9 +31,11 @@
     "@types/mongoose": "^5.5.35",
     "mongoose": "^5.8.3",
     "nestjs-mongoose-crud": "^1.2.2",
+    "nestjs-redis": "^1.2.5",
     "nestjs-typegoose": "^7.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
@@ -76,7 +79,15 @@
     ],
     "moduleNameMapper": {
       "libs/db/(.*)": "<rootDir>/libs/db/src/$1",
-      "libs/db": "<rootDir>/libs/db/src"
+      "libs/db": "<rootDir>/libs/db/src",
+      "@app/common/(.*)": "<rootDir>/libs/common/src/$1",
+      "@app/common": "<rootDir>/libs/common/src",
+      "@app/redis/(.*)": "<rootDir>/libs/redis/src/$1",
+      "@app/redis": "<rootDir>/libs/redis/src",
+      "@app/rs/(.*)": "<rootDir>/libs/rs/src/$1",
+      "@app/rs": "<rootDir>/libs/rs/src",
+      "@app/rdb/(.*)": "<rootDir>/libs/rdb/src/$1",
+      "@app/rdb": "<rootDir>/libs/rdb/src"
     }
   }
 }
