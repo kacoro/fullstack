@@ -6,6 +6,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { NextPageContext, NextComponentType } from 'next';
 import { appWithTranslation } from '../i18n'
+import withReduxStore from '../lib/with-redux-store'
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 const Noop = ({ children }) => children
 
 type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
@@ -13,9 +17,14 @@ type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
 };
 interface Props extends AppProps {
   Component: LayoutComponent;
+  reduxStore:any
 }
  class MyApp extends App<Props> {
-  
+   state: any;
+  constructor(props) {
+    super(props)
+    this.state = {persistor : persistStore(props.reduxStore)}
+  }  
   async componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -26,7 +35,7 @@ interface Props extends AppProps {
   }
   static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
-   
+    
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
       
@@ -36,10 +45,15 @@ interface Props extends AppProps {
   }
   
   render() {
-    const { Component, pageProps} = this.props;
+    const { Component, pageProps,reduxStore} = this.props;
    
     const Layout = Component.Layout || Noop
     return (
+      <Provider store={reduxStore}>
+          <PersistGate
+          loading={<Component {...pageProps} />}
+          persistor={this.state.persistor}
+        >
       <React.Fragment>
         <Head>
           <title>My page</title>
@@ -55,9 +69,10 @@ interface Props extends AppProps {
         </Layout>
         </div>
       </React.Fragment>
-   
+      </PersistGate>
+      </Provider>
     );
   }
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(withReduxStore(MyApp))

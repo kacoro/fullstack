@@ -1,26 +1,8 @@
-import React from 'react'
-import { useSelector, shallowEqual } from 'react-redux'
-
-const useClock = () => {
-  return useSelector(
-    state => ({
-      lastUpdate: state.lastUpdate,
-      light: state.light,
-    }),
-    shallowEqual
-  )
-}
-
-const formatTime = time => {
-  // cut off except hh:mm:ss
-  return new Date(time).toJSON().slice(11, 19)
-}
-
-const Clock = () => {
-  const { lastUpdate, light } = useClock()
+export default ({ lastUpdate, light }) => {
   return (
     <div className={light ? 'light' : ''}>
-      {formatTime(lastUpdate)}
+     
+      {format(new Date(lastUpdate))}
       <style jsx>{`
         div {
           padding: 15px;
@@ -38,4 +20,4 @@ const Clock = () => {
   )
 }
 
-export default Clock
+const format = t =>  t.toJSON().slice(11, 19) // cut off except hh:mm:ss

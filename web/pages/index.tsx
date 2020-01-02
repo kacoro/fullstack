@@ -8,12 +8,11 @@ import ProTip from '../src/ProTip';
 import Layout from '../components/Layout'
 
 import { useDispatch } from 'react-redux'
-import { withRedux } from '../lib/redux'
+import { connect } from 'react-redux'
 import useInterval from '../lib/useInterval'
-import { i18n, Link, withTranslation } from '../i18n'
-import Clock from '../components/clock'
-import Counter from '../components/counter'
-
+import { i18n, Link } from '../i18n'
+import { startClock, serverRenderClock } from '../store'
+import Examples from '../components/examples'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -27,21 +26,17 @@ function Copyright() {
   );
 }
 
-function Index({ t }) {
+function Index() {
   const dispatch = useDispatch()
   useInterval(() => {
-    dispatch({
-      type: 'TICK',
-      light: true,
-      lastUpdate: Date.now(),
-    })
+    dispatch(startClock())
   }, 1000)
   return (
     <Layout>
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-        {t('h1')}
+       
         </Typography>
         <Link href="/about">
           Go to the about page
@@ -50,10 +45,9 @@ function Index({ t }) {
           type='button'
           onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'zh' : 'en')}
         >
-          {t('change-locale')}
+         
         </button>
-        <Clock />
-        <Counter />
+        <Examples />
         <ProTip />
         <Copyright />
       </Box>
@@ -61,13 +55,13 @@ function Index({ t }) {
     </Layout>
   );
 }
-Index.getInitialProps = async ({ reduxStore }) =>{
-  const { dispatch } = reduxStore
-  dispatch({
-    type: 'TICK',
-    light: typeof window === 'object',
-    lastUpdate: Date.now(),
-  })
+Index.getInitialProps = async ({ reduxStore}) =>{
+
+  // const isServer = !!req
+    // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
+    reduxStore.dispatch(serverRenderClock())
+
   return  {namespacesRequired: ['common']}
 }
-export default withTranslation('common')(withRedux(Index))
+const mapDispatchToProps = { startClock }
+export default connect(null, mapDispatchToProps)(Index)
