@@ -6,7 +6,14 @@ import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
 
 import Layout from '../components/Layout'
+
+import { useDispatch } from 'react-redux'
+import { withRedux } from '../lib/redux'
+import useInterval from '../lib/useInterval'
 import { i18n, Link, withTranslation } from '../i18n'
+import Clock from '../components/clock'
+import Counter from '../components/counter'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -21,6 +28,14 @@ function Copyright() {
 }
 
 function Index({ t }) {
+  const dispatch = useDispatch()
+  useInterval(() => {
+    dispatch({
+      type: 'TICK',
+      light: true,
+      lastUpdate: Date.now(),
+    })
+  }, 1000)
   return (
     <Layout>
     <Container maxWidth="sm">
@@ -37,6 +52,8 @@ function Index({ t }) {
         >
           {t('change-locale')}
         </button>
+        <Clock />
+        <Counter />
         <ProTip />
         <Copyright />
       </Box>
@@ -44,7 +61,13 @@ function Index({ t }) {
     </Layout>
   );
 }
-Index.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
-})
-export default withTranslation('common')(Index)
+Index.getInitialProps = async ({ reduxStore }) =>{
+  const { dispatch } = reduxStore
+  dispatch({
+    type: 'TICK',
+    light: typeof window === 'object',
+    lastUpdate: Date.now(),
+  })
+  return  {namespacesRequired: ['common']}
+}
+export default withTranslation('common')(withRedux(Index))
