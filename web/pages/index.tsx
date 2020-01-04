@@ -10,7 +10,7 @@ import Layout from '../components/Layout'
 import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import useInterval from '../lib/useInterval'
-import { i18n, Link } from '../i18n'
+import { i18n, Link,withTranslation } from '../i18n'
 import { startClock, serverRenderClock } from '../store'
 import Examples from '../components/examples'
 function Copyright() {
@@ -26,7 +26,7 @@ function Copyright() {
   );
 }
 
-function Index() {
+function Index({t}) {
   const dispatch = useDispatch()
   useInterval(() => {
     dispatch(startClock())
@@ -39,13 +39,13 @@ function Index() {
        
         </Typography>
         <Link href="/about">
-          Go to the about page
+          <a> Go to the about page</a>
         </Link>
         <button
           type='button'
           onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'zh' : 'en')}
         >
-         
+          {t('h1')}
         </button>
         <Examples />
         <ProTip />
@@ -55,13 +55,13 @@ function Index() {
     </Layout>
   );
 }
-Index.getInitialProps = async ({ reduxStore}) =>{
+Index.getInitialProps = async ({ reduxStore,req}) =>{
 
-  // const isServer = !!req
+  const isServer = !!req
+  console.log(isServer)
     // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
     reduxStore.dispatch(serverRenderClock())
-
   return  {namespacesRequired: ['common']}
 }
 const mapDispatchToProps = { startClock }
-export default connect(null, mapDispatchToProps)(Index)
+export default  withTranslation('common')(connect(null, mapDispatchToProps)(Index))
