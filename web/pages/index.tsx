@@ -7,9 +7,9 @@ import ProTip from '../src/ProTip';
 
 import Layout from '../components/Layout'
 
-import { useDispatch } from 'react-redux'
+
 import { connect } from 'react-redux'
-import useInterval from '../lib/useInterval'
+
 import { i18n, Link,withTranslation } from '../i18n'
 import { startClock, serverRenderClock } from '../store'
 import Examples from '../components/examples'
@@ -27,10 +27,7 @@ function Copyright() {
 }
 
 function Index({t}) {
-  const dispatch = useDispatch()
-  useInterval(() => {
-    dispatch(startClock())
-  }, 1000)
+
   return (
     <Layout>
     <Container maxWidth="sm">

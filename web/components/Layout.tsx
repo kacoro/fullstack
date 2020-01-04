@@ -11,10 +11,8 @@ type Props = {
 
 async function fetch(){
   const res = await fetchWrapper('http://localhost:8000/themes/5e077861736ce3041c0b3dc0')
-  console.log(res.options)
   if(res && res.options){
     const myTheme =  createMuiTheme(JSON.parse(res.options))
-    console.log(myTheme)
     return myTheme
   }else{
     return theme
@@ -27,11 +25,16 @@ const Layout: React.FC<Props> = ({
   title = 'This is the default title',
 }) => {
   const [myTheme, setMyTheme] = useState(theme);
+
   useEffect(() => {
-    (async function anyNameFunction() {
-      let theme = await fetch();
-      setMyTheme(theme)
-    })();
+    var isSubscribed = true
+    fetch().then( theme=>{
+      if(isSubscribed){
+        setMyTheme(theme)
+      }
+    })
+   
+    return ()=> isSubscribed = false
   },[])
  
   return (
