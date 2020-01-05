@@ -1,7 +1,7 @@
 
 {
     "h1": "一个案例",
-    "change-locale": "Change locale",
+    "change-locale": "切换语言",
     "to-second-page": "第二页",
     "error-with-status": "一个 {{statusCode}} 错误 occurred on server",
     "error-without-status": "An error occurred on the server"

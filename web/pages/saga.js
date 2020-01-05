@@ -11,7 +11,6 @@ class Index extends React.Component {
     if (!store.getState().placeholderData) {
       store.dispatch(loadData())
     }
-
     return { isServer }
   }
 

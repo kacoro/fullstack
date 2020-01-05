@@ -16,7 +16,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import createStore from '../redux-saga/store'
-
 const Noop = ({ children }) => children
 
 type LayoutComponent = NextComponentType<NextPageContext, any, any> & {

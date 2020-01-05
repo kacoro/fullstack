@@ -8,8 +8,9 @@ import Layout from '../components/Layout'
 import { connect } from 'react-redux'
 
 import { i18n, Link,withTranslation } from '../i18n'
-import { startClock, serverRenderClock } from '../store'
+// import { startClock, serverRenderClock } from '../store'
 import Examples from '../components/examples'
+import { loadData,  tickClock,startClock } from '../redux-saga/actions'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -23,8 +24,8 @@ function Copyright() {
   );
 }
 
-function Index({t}) {
-
+function Index({dispatch,t}) {
+  dispatch(startClock())
   return (
     <Layout>
     <Container maxWidth="sm">
@@ -53,10 +54,15 @@ Index.getInitialProps = async ({ store,req}) =>{
 
   const isServer = !!req
   console.log(isServer)
-
     // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
-    store.dispatch(serverRenderClock())
-  return  {namespacesRequired: ['common']}
+    // store.dispatch(serverRenderClock())
+  
+    store.dispatch(tickClock(isServer))
+    if (!store.getState().placeholderData) {
+      store.dispatch(loadData())
+    }
+ 
+  return  {namespacesRequired: ['common'],isServer}
 }
-const mapDispatchToProps = { startClock }
-export default  withTranslation('common')(connect(null, mapDispatchToProps)(Index))
+// const mapDispatchToProps = { startClock }
+export default  withTranslation('common')(connect()(Index))
