@@ -6,10 +6,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { NextPageContext, NextComponentType } from 'next';
 import { appWithTranslation } from '../i18n'
-import withReduxStore from '../lib/with-redux-store'
+
 import { Provider } from 'react-redux'
+
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
+
+
+import withRedux from 'next-redux-wrapper'
+import withReduxSaga from 'next-redux-saga'
+import createStore from '../redux-saga/store'
+
 const Noop = ({ children }) => children
 
 type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
@@ -17,14 +24,14 @@ type LayoutComponent = NextComponentType<NextPageContext, any, any> & {
 };
 interface Props extends AppProps {
   Component: LayoutComponent;
-  reduxStore:any
+  store:any
 }
  class MyApp extends App<Props> {
-   state: any;
-  constructor(props) {
+   persistor: import("redux-persist").Persistor;
+   constructor(props) {
     super(props)
-    this.state = {persistor : persistStore(props.reduxStore)}
-  }  
+    this.persistor = persistStore(props.store)
+  }
   async componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -45,14 +52,14 @@ interface Props extends AppProps {
   }
   
   render() {
-    const { Component, pageProps,reduxStore} = this.props;
+    const { Component, pageProps,store} = this.props;
    
     const Layout = Component.Layout || Noop
     return (
-      <Provider store={reduxStore}>
+      <Provider store={store}>
           <PersistGate
           loading={<Component {...pageProps} />}
-          persistor={this.state.persistor}
+          persistor={this.persistor}
         >
       <React.Fragment>
         <Head>
@@ -75,4 +82,6 @@ interface Props extends AppProps {
   }
 }
 
-export default appWithTranslation(withReduxStore(MyApp))
+// export default appWithTranslation(withReduxStore(MyApp))
+
+export default withRedux(createStore)(withReduxSaga(appWithTranslation(MyApp)))

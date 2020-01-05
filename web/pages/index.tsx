@@ -4,10 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
-
 import Layout from '../components/Layout'
-
-
 import { connect } from 'react-redux'
 
 import { i18n, Link,withTranslation } from '../i18n'
@@ -52,12 +49,13 @@ function Index({t}) {
     </Layout>
   );
 }
-Index.getInitialProps = async ({ reduxStore,req}) =>{
+Index.getInitialProps = async ({ store,req}) =>{
 
   const isServer = !!req
   console.log(isServer)
+
     // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
-    reduxStore.dispatch(serverRenderClock())
+    store.dispatch(serverRenderClock())
   return  {namespacesRequired: ['common']}
 }
 const mapDispatchToProps = { startClock }

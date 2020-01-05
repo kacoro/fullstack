@@ -36,11 +36,11 @@ class DataList extends Component {
       })
   }
 
-//   componentWillUnmount = () => {
-//     this.setState = (state,callback)=>{
-//       return;
-//     };
-// }
+  componentWillUnmount = () => {
+    this.setState = (state,callback)=>{
+      return;
+    };
+}
   render() {
     const { exampleData, error } = this.props
     const { isDataLoading } = this.state

@@ -1,3 +1,4 @@
+const dotEnvResult = require('dotenv').config()
 module.exports = {
     publicRuntimeConfig: {
       localeSubpaths: typeof process.env.LOCALE_SUBPATHS === 'string'

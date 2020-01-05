@@ -27,7 +27,7 @@ function About({ t }) {
         <Typography variant="h4" component="h1" gutterBottom>
         {t('h1')}
         </Typography>
-        <Link href="/">Go to the main page</Link>
+        <Link href="/"><a>Go to the main page</a></Link>
         <ProTip />
         <Copyright />
       </Box>
