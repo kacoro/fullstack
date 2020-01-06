@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { i18n, Link,withTranslation } from '../i18n'
 // import { startClock, serverRenderClock } from '../store'
 import Examples from '../components/examples'
-import { loadData,  tickClock,startClock } from '../redux-saga/actions'
+import { loadData,  tickClock,startClock,loadTheme } from '../redux-saga/actions'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -60,6 +60,10 @@ Index.getInitialProps = async ({ store,req}) =>{
     store.dispatch(tickClock(isServer))
     if (!store.getState().placeholderData) {
       store.dispatch(loadData())
+    }
+    console.log(store.getState().theme)
+    if (!store.getState().theme) {
+      store.dispatch(loadTheme())
     }
  
   return  {namespacesRequired: ['common'],isServer}

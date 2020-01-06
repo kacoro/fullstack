@@ -6,6 +6,7 @@ export const exampleInitialState = {
   lastUpdate: 0,
   light: false,
   placeholderData: null,
+  theme:null
 }
 
 function reducer(state = exampleInitialState, action) {
@@ -39,7 +40,12 @@ function reducer(state = exampleInitialState, action) {
         ...state,
         ...{ placeholderData: action.data },
       }
-
+    case actionTypes.LOAD_THEME_SUCCESS:
+      console.log("success",action.data)
+      return {
+        ...state,
+        ...{ theme: action.data },
+      }
     case actionTypes.TICK_CLOCK:
       return {
         ...state,

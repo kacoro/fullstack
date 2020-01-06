@@ -5,6 +5,8 @@ export const actionTypes = {
   RESET: 'RESET',
   LOAD_DATA: 'LOAD_DATA',
   LOAD_DATA_SUCCESS: 'LOAD_DATA_SUCCESS',
+  LOAD_THEME:'LOAD_THEME',
+  LOAD_THEME_SUCCESS: 'LOAD_THEME_SUCCESS',
   START_CLOCK: 'START_CLOCK',
   TICK_CLOCK: 'TICK_CLOCK',
 }
@@ -31,10 +33,19 @@ export function reset() {
 export function loadData() {
   return { type: actionTypes.LOAD_DATA }
 }
-
 export function loadDataSuccess(data) {
   return {
     type: actionTypes.LOAD_DATA_SUCCESS,
+    data,
+  }
+}
+export function loadTheme() {
+  return { type: actionTypes.LOAD_THEME }
+}
+
+export function loadThemeSuccess(data) {
+  return {
+    type: actionTypes.LOAD_THEME_SUCCESS,
     data,
   }
 }

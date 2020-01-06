@@ -18,7 +18,7 @@ const bindMiddleware = middleware => {
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: ['exampleData','count'], // place to select which state you want to persist
+  whitelist: ['exampleData','count','theme'], // place to select which state you want to persist
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
