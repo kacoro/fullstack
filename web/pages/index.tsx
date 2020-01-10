@@ -61,7 +61,6 @@ Index.getInitialProps = async ({ store,req}) =>{
     if (!store.getState().placeholderData) {
       store.dispatch(loadData())
     }
-    console.log(store.getState().theme)
     if (!store.getState().theme) {
       store.dispatch(loadTheme())
     }

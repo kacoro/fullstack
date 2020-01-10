@@ -6,6 +6,10 @@ import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
 import Layout from '../components/Layout';
 import {  Link, withTranslation } from '../i18n'
+import { connect } from 'react-redux'
+
+import {  loadTheme } from '../redux-saga/actions'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -35,8 +39,15 @@ function About({ t }) {
     </Layout>
   );
 }
-About.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
-})
+About.getInitialProps = async ({ store,req}) =>{
 
-export default withTranslation('common')(About)
+  const isServer = !!req
+  console.log(isServer)
+    // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
+    // store.dispatch(serverRenderClock())
+    if (!store.getState().theme) {
+      store.dispatch(loadTheme())
+    }
+  return  {namespacesRequired: ['common'],isServer}
+}
+export default withTranslation('common')(connect()(About))

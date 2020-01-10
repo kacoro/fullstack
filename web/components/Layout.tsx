@@ -3,13 +3,13 @@ import Head from 'next/head'
 // import theme from '../src/theme';
 // import {fetchWrapper} from '../utils/api'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
-// import { useState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux'
 import Dashbord from './Dashbord'
 type Props = {
   title?: string,
   theme:object,
-  children:JSX.Element
+  children:React.ReactNode
 }
 
 
@@ -28,8 +28,8 @@ const Layout: React.FC<Props> = ({
   children,
   title = 'This is the default title',
 }) => {
- 
-  // const [myTheme] = useState(createMuiTheme(theme));
+  
+  const [myTheme] = useState(theme);
  
   // useEffect(() => {
   //   console.log("myTheme",myTheme)
@@ -54,7 +54,7 @@ const Layout: React.FC<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={myTheme}>
     <Dashbord>
       {children}
     </Dashbord>
@@ -64,7 +64,7 @@ const Layout: React.FC<Props> = ({
 
 function mapStateToProps(state) {
   const { theme} = state
-  return {theme:createMuiTheme(theme) }
+  return {theme:createMuiTheme(theme || {}) }
 }
 
 export default connect(mapStateToProps)(Layout)
