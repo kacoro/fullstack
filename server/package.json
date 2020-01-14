@@ -28,6 +28,7 @@
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/swagger": "^4.1.2",
+    "@nestjs/typeorm": "^6.2.0",
     "@typegoose/typegoose": "^6.2.0",
     "@types/mongoose": "^5.5.35",
     "apollo-server-express": "^2.9.16",
@@ -39,12 +40,14 @@
     "nestjs-typegoose": "^7.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "pg": "^7.17.1",
     "redis": "^2.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "swagger-ui-express": "^4.1.2",
-    "type-graphql": "^0.17.6"
+    "type-graphql": "^0.17.6",
+    "typeorm": "^0.2.22"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
@@ -92,7 +95,9 @@
       "@app/rs/(.*)": "<rootDir>/libs/rs/src/$1",
       "@app/rs": "<rootDir>/libs/rs/src",
       "@app/rdb/(.*)": "<rootDir>/libs/rdb/src/$1",
-      "@app/rdb": "<rootDir>/libs/rdb/src"
+      "@app/rdb": "<rootDir>/libs/rdb/src",
+      "libs/pg/(.*)": "<rootDir>/libs/pg/src/$1",
+      "libs/pg": "<rootDir>/libs/pg/src"
     }
   }
 }

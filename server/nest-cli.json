@@ -70,6 +70,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/rdb/tsconfig.lib.json"
       }
+    },
+    "pg": {
+      "type": "library",
+      "root": "libs/pg",
+      "entryFile": "index",
+      "sourceRoot": "libs/pg/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/pg/tsconfig.lib.json"
+      }
     }
   }
 }

@@ -3,6 +3,12 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+
+> [typeorm]()
+> [pggresql]()
+> [typegraphql](https://typegraphql.ml/docs/introduction.html)
+> [apollographql] (https://typegraphql.ml/docs/introduction.html)
+
 ## Installation
 
 ```bash
@@ -49,3 +55,14 @@ $ nest g lib common
 ```
 
 
+# Write your query or mutation here
+query{
+  signup(signupInput:{
+    userName:"sam",
+    email:"sam@sam.com",
+    password:"sam"
+  }){
+    path
+    message
+  }
+}

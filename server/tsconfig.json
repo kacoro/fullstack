@@ -40,6 +40,12 @@
       ],
       "@app/rdb/*": [
         "libs/rdb/src/*"
+      ],
+      "libs/pg": [
+        "libs/pg/src"
+      ],
+      "libs/pg/*": [
+        "libs/pg/src/*"
       ]
     }
   },
