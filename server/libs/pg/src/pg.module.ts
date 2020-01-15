@@ -5,8 +5,7 @@ import {typeOrmConfig} from './config/typeOrmConfig'
 @Global()
 @Module({
   imports:[TypeOrmModule.forRootAsync(   {
-    useFactory(){
-      return typeOrmConfig}})],
+    useFactory(){return typeOrmConfig}})],
   providers: [PgService],
   exports: [PgService],
 })
